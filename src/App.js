@@ -18,9 +18,14 @@ const Item = styled(Paper)(({ theme }) => ({
 function App() {
 
     const [selectedClient, setSelectedClient] = React.useState('');
+    const [selectedEvent, setSelectedEvent] = React.useState('');
 
     const handleClientChange = (event) => {
         setSelectedClient(event.target.value);
+    };
+
+    const handleEventChange = (event) => {
+        setSelectedEvent(event.target.value);
     };
 
     return (
@@ -37,12 +42,12 @@ function App() {
                     <Grid item xs={4}>
                         <Item>
                             <FormControl fullWidth>
-                                <InputLabel id="demo-simple-select-label">Client</InputLabel>
+                                <InputLabel id="client-select-label">Client</InputLabel>
                                 <Select
-                                    labelId="demo-simple-select-label"
-                                    id="demo-simple-select"
+                                    labelId="client-select-label"
+                                    id="client-select"
                                     value={selectedClient}
-                                    label="Age"
+                                    label="Client"
                                     onChange={handleClientChange}
                                 >
                                     {CLIENTS.map(client => (
@@ -52,10 +57,25 @@ function App() {
                             </FormControl>
                         </Item>
                     </Grid>
-                    <Grid item xs={8}>
-                        <Item>xs=4</Item>
+                    <Grid item xs={4}>
+                        <Item>
+                            <FormControl fullWidth>
+                                <InputLabel id="event-select-label">Event</InputLabel>
+                                <Select
+                                    labelId="event-select-label"
+                                    id="event-select"
+                                    value={selectedEvent}
+                                    label="event"
+                                    onChange={handleEventChange}
+                                >
+                                    {EVENTS.map(client => (
+                                        <MenuItem value={client.code}>{client.name}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Item>
                     </Grid>
-                    <Grid item xs={2}>
+                    <Grid item xs={4}>
                         <Item>xs=4</Item>
                     </Grid>
                     <Grid item xs={8}>
