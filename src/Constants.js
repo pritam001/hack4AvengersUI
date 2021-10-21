@@ -1,4 +1,5 @@
 export const API_ENDPOINT = "http://localhost:4000";
+export const DRAWER_WIDTH = 240;
 
 export const CLIENTS = [
     {code: "absli", name: "ABSLI"},
