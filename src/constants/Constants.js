@@ -1,5 +1,5 @@
-export const API_ENDPOINT = "http://localhost:4000";
-export const POST_CONFIG_API_ENDPOINT = "http://localhost:4000/config";
+export const API_ENDPOINT = "https://pod2.lms.getvymo.com/avengers";
+export const POST_CONFIG_API_ENDPOINT = API_ENDPOINT + "/config";
 export const DRAWER_WIDTH = 240;
 
 export const CLIENTS = [
