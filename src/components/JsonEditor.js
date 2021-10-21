@@ -12,7 +12,7 @@ const JsonEditor = props => {
         if (!editorObj.error) {
             props.setEditorData(editorObj);
         } else {
-            console.log('JSON error log');
+            console.log('JSONEditor error');
         }
     };
 
