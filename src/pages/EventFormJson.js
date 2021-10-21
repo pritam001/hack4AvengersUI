@@ -28,7 +28,7 @@ const initJsObject = {
 };
 
 function EventFormJson() {
-    const [editorData, setEditorData] = React.useState(initJsObject);
+    const [editorData, setEditorData] = React.useState({jsObject: initJsObject});
     const [snackbarStatus, setSnackbarStatus] = React.useState('')
     const [snackbarMessage, setSnackbarMessage] = React.useState('');
     const [isSnackbarOpen, setIsSnackbarOpen] = React.useState(false);
@@ -39,7 +39,7 @@ function EventFormJson() {
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(editorData.jsObject),
+                body: JSON.stringify(editorData?.jsObject),
             })
             .then(response => {
                 setIsSnackbarOpen(true);

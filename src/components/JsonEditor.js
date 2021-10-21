@@ -12,7 +12,7 @@ const JsonEditor = props => {
 
     return (
         <JSONInput
-            placeholder={props.editorData} // data to display
+            placeholder={props.editorData?.jsObject} // data to display
             theme="darktheme"
             locale={locale}
             colors={{
