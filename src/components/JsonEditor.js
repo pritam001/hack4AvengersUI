@@ -20,6 +20,7 @@ const JsonEditor = props => {
         <JSONInput
             placeholder={placeholder} // data to display
             theme="darktheme"
+            viewOnly={props.viewOnly}
             locale={locale}
             colors={{
                 string: "#DAA520" // overrides theme colors with whatever color value you want

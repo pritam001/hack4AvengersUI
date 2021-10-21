@@ -3,10 +3,9 @@ import './EventForm.css';
 import * as React from 'react';
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
-import {Button, FormControl, InputLabel, MenuItem, Select} from "@mui/material";
+import {FormControl, InputLabel, MenuItem, Select} from "@mui/material";
 import {CLIENTS, EVENTS} from "../constants/Constants";
-import {styled} from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
+import Item from "../common/Item";
 
 function EventForm() {
     const [selectedClient, setSelectedClient] = React.useState('');
@@ -19,13 +18,6 @@ function EventForm() {
     const handleEventChange = (event) => {
         setSelectedEvent(event.target.value);
     };
-
-    const Item = styled(Paper)(({ theme }) => ({
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-    }));
 
     return (
         <Box sx={{ display: 'flex', flexGrow: 1, flexDirection: 'column', p: 8 }} className="EventForm">

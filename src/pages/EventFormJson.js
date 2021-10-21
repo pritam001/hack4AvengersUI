@@ -4,10 +4,8 @@ import * as React from "react";
 import JsonEditor from "../components/JsonEditor";
 import Box from "@mui/material/Box";
 import {Button} from "@mui/material";
-import {POST_CONFIG_API_ENDPOINT} from "../constants/Constants";
+import {CONFIG_API_ENDPOINT} from "../constants/Constants";
 import SnackBarComponent from "../components/SnackBarComponent";
-import {styled} from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
 const initJsObject = {
@@ -78,7 +76,7 @@ function EventFormJson() {
     const [isSnackbarOpen, setIsSnackbarOpen] = React.useState(false);
 
     const submitCustomEventData = (editorData) => {
-        return fetch(POST_CONFIG_API_ENDPOINT, {
+        return fetch(CONFIG_API_ENDPOINT, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -107,7 +105,11 @@ function EventFormJson() {
             />
             <Grid container spacing={2} sx={{ pb: 4 }}>
                 <Grid item xs={6}>
-                    <JsonEditor editorData={editorData} setEditorData={setEditorData} />
+                    <JsonEditor
+                        editorData={editorData}
+                        setEditorData={setEditorData}
+                        viewOnly={false}
+                    />
                 </Grid>
             </Grid>
             <Button variant="contained" onClick={() => submitCustomEventData(editorData)}>SUBMIT</Button>

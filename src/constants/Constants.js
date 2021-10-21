@@ -1,10 +1,11 @@
 export const API_ENDPOINT = "https://pod2.lms.getvymo.com/avengers";
-export const POST_CONFIG_API_ENDPOINT = API_ENDPOINT + "/config";
+export const CONFIG_API_ENDPOINT = API_ENDPOINT + "/config";
 export const DRAWER_WIDTH = 240;
 
 export const CLIENTS = [
     {code: "absli", name: "ABSLI"},
     {code: "hdfc", name: "HDFC"},
+    {code: "hdfcassets", name: "HDFC Assets"},
 ];
 
 export const EVENTS = [
