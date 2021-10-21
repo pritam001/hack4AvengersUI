@@ -8,21 +8,27 @@ import {POST_CONFIG_API_ENDPOINT} from "../constants/Constants";
 import SnackBarComponent from "../components/SnackBarComponent";
 
 const initJsObject = {
-    client : "absli",
-    event : "LEAD_DETAILS_RETURN",
-    action: "Disable Edit For Role",
-    attributes : {
-        state: ""
-    },
-    condition : {
-        userRoles: "SU, ADMIN"
-    }
+    "client" : "absli",
+    "events" : [
+        {
+            "event": "LEAD_DETAILS_RETURN",
+            "actions":[
+                {
+                    "action" : "Disable Edit For Role",
+                    "attributes" : {
+                        "state": "xyz"
+                    },
+                    "condition" : {
+                        "userRoles": "SU, ADMIN"
+                    }
+                }
+            ]
+        }
+    ]
 };
 
 function EventFormJson() {
-    const [editorData, setEditorData] = React.useState({
-        jsObject: initJsObject,
-    });
+    const [editorData, setEditorData] = React.useState(initJsObject);
     const [snackbarStatus, setSnackbarStatus] = React.useState('')
     const [snackbarMessage, setSnackbarMessage] = React.useState('');
     const [isSnackbarOpen, setIsSnackbarOpen] = React.useState(false);
