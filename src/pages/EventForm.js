@@ -28,61 +28,45 @@ function EventForm() {
     }));
 
     return (
-        <div className="EventForm">
-            <Box
-                className="mui-box"
-                sx={{
-                    display: 'flex',
-                    flexGrow: 1,
-                    p: 8,
-                }}
-            >
-                <Grid container spacing={2}>
-                    <Grid item xs={4}>
-                        <Item>
-                            <FormControl fullWidth>
-                                <InputLabel id="client-select-label">Client</InputLabel>
-                                <Select
-                                    labelId="client-select-label"
-                                    id="client-select"
-                                    value={selectedClient}
-                                    label="Client"
-                                    onChange={handleClientChange}
-                                >
-                                    {CLIENTS.map(client => (
-                                        <MenuItem value={client.code}>{client.name}</MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                        </Item>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Item>
-                            <FormControl fullWidth>
-                                <InputLabel id="event-select-label">Event</InputLabel>
-                                <Select
-                                    labelId="event-select-label"
-                                    id="event-select"
-                                    value={selectedEvent}
-                                    label="event"
-                                    onChange={handleEventChange}
-                                >
-                                    {EVENTS.map(event => (
-                                        <MenuItem value={event.code}>{event.name}</MenuItem>
-                                    ))}
-                                </Select>
-                            </FormControl>
-                        </Item>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Item>xs=4</Item>
-                    </Grid>
-                    <Grid item xs={8}>
-                        <Item>xs=8</Item>
-                    </Grid>
+        <Box sx={{ display: 'flex', flexGrow: 1, flexDirection: 'column', p: 8 }} className="EventForm">
+            <Grid container spacing={2}>
+                <Grid item xs={4}>
+                    <Item>
+                        <FormControl fullWidth>
+                            <InputLabel id="client-select-label">Client</InputLabel>
+                            <Select
+                                labelId="client-select-label"
+                                id="client-select"
+                                value={selectedClient}
+                                label="Client"
+                                onChange={handleClientChange}
+                            >
+                                {CLIENTS.map(client => (
+                                    <MenuItem key={client.code} value={client.code}>{client.name}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </Item>
+                    <br />
+                    <Item>
+                        <FormControl fullWidth>
+                            <InputLabel id="event-select-label">Event</InputLabel>
+                            <Select
+                                labelId="event-select-label"
+                                id="event-select"
+                                value={selectedEvent}
+                                label="event"
+                                onChange={handleEventChange}
+                            >
+                                {EVENTS.map(event => (
+                                    <MenuItem key={event.code} value={event.code}>{event.name}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                    </Item>
                 </Grid>
-            </Box>
-        </div>
+            </Grid>
+        </Box>
     );
 }
 
