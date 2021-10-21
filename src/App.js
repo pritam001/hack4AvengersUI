@@ -18,7 +18,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
-import {DRAWER_WIDTH} from "./Constants";
+import {DRAWER_WIDTH} from "./constants/Constants";
 
 
 const AppBar = styled(MuiAppBar, {

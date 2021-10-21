@@ -12,7 +12,7 @@ import ListItemText from '@mui/material/ListItemText';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import DynamicFormIcon from '@mui/icons-material/DynamicForm';
 import {Link} from "react-router-dom";
-import {DRAWER_WIDTH} from "../Constants";
+import {DRAWER_WIDTH} from "../constants/Constants";
 
 const openedMixin = (theme) => ({
     width: DRAWER_WIDTH,
