@@ -68,8 +68,8 @@ function App() {
                                     label="event"
                                     onChange={handleEventChange}
                                 >
-                                    {EVENTS.map(client => (
-                                        <MenuItem value={client.code}>{client.name}</MenuItem>
+                                    {EVENTS.map(event => (
+                                        <MenuItem value={event.code}>{event.name}</MenuItem>
                                     ))}
                                 </Select>
                             </FormControl>
