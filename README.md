@@ -74,3 +74,23 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 1. Add typography: https://mui.com/components/typography/#general
 2. Add fontIcons: https://mui.com/components/icons/#font-icons
 
+# Roles:
+mysql> select distinct(role) from userVsRoles where clientId="absli"
+-> ;
++-----------------+
+| role            |
++-----------------+
+| Cluster Manager |
+| RO              |
+| HHR             |
+| ZRH             |
+| CM              |
+| CRH             |
+| OpsAdmin        |
+| GB              |
+| AdminRole       |
+| Goals Admin     |
++-----------------+
+
+https://bitbucket.org/vymo/vymo-config-data/src/uat/v1/clients/absli/modules/leads/states/
+https://bitbucket.org/vymo/vymo-config-data/src/uat/v1/clients/absli/modules/

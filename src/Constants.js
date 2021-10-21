@@ -1,5 +1,6 @@
 export const CLIENTS = [
-    {code: "ABSLI", name: "ABSLI"},
+    {code: "absli", name: "ABSLI"},
+    {code: "hdfc", name: "HDFC"},
 ];
 
 export const API_ENDPOINT = "http://localhost:4000";
