@@ -5,9 +5,13 @@ import JsonEditor from "../components/JsonEditor";
 import Box from "@mui/material/Box";
 import {Button} from "@mui/material";
 import {POST_CONFIG_API_ENDPOINT} from "../constants/Constants";
+import SnackBarComponent from "../components/SnackBarComponent";
 
 function EventFormJson() {
     const [editorData, setEditorData] = React.useState(null);
+    const [snackbarStatus, setSnackbarStatus] = React.useState('')
+    const [snackbarMessage, setSnackbarMessage] = React.useState('');
+    const [isSnackbarOpen, setIsSnackbarOpen] = React.useState(false);
 
     const submitCustomEventData = (editorData) => {
         return fetch(POST_CONFIG_API_ENDPOINT, {
@@ -18,16 +22,26 @@ function EventFormJson() {
                 body: JSON.stringify(editorData.jsObject),
             })
             .then(response => {
-                console.log(response);
+                setIsSnackbarOpen(true);
+                setSnackbarStatus("success");
+                setSnackbarMessage("Custom Event Submitted!");
             })
             .catch(error => {
-                console.error(error);
+                setIsSnackbarOpen(true);
+                setSnackbarStatus("error");
+                setSnackbarMessage(`Custom Event Submit Failed! Error: '${error.message}'`);
             });
     };
 
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', p: 8 }} className="EventListJson">
-            <JsonEditor setEditorData={setEditorData}/>
+            <SnackBarComponent
+                snackbarMessage={snackbarMessage}
+                isOpen={isSnackbarOpen}
+                snackbarStatus={snackbarStatus}
+                handleClose={() => setIsSnackbarOpen(false)}
+            />
+            <JsonEditor setEditorData={setEditorData} />
             <Button variant="contained" onClick={() => submitCustomEventData(editorData)}>SUBMIT</Button>
         </Box>
     );
