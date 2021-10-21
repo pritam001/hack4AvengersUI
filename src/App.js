@@ -9,7 +9,7 @@ import {
 import EventForm from "./pages/EventForm";
 import EventList from "./pages/EventList";
 import Login from "./pages/Login";
-import MiniDrawer from "./components/NavBar";
+import MiniDrawer, {DrawerHeader} from "./components/NavBar";
 import {styled} from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -40,6 +40,24 @@ const AppBar = styled(MuiAppBar, {
         }),
     }),
 }));
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+    ({ theme, open }) => ({
+        flexGrow: 1,
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        // marginLeft: `${DRAWER_WIDTH}px`,
+        ...(open && {
+            transition: theme.transitions.create('margin', {
+                easing: theme.transitions.easing.easeOut,
+                duration: theme.transitions.duration.enteringScreen,
+            }),
+            marginLeft: 0,
+        }),
+    }),
+);
 
 function App() {
     const [open, setOpen] = React.useState(false);
@@ -79,9 +97,9 @@ function App() {
                     </Toolbar>
                 </AppBar>
 
-                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                    <MiniDrawer open={open} handleDrawerClose={handleDrawerClose}/>
-
+                <MiniDrawer open={open} handleDrawerClose={handleDrawerClose}/>
+                <Main open={open}>
+                    <DrawerHeader />
                     <Switch>
                         <Route path="/event_form_json">
                             <EventFormJson />
@@ -96,7 +114,7 @@ function App() {
                             <Login />
                         </Route>
                     </Switch>
-                </Box>
+                </Main>
             </Box>
         </Router>
     );
