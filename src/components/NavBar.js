@@ -11,6 +11,7 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import ListAltIcon from '@mui/icons-material/ListAlt';
 import DynamicFormIcon from '@mui/icons-material/DynamicForm';
+import BuildCircleIcon from '@mui/icons-material/BuildCircle';
 import {Link} from "react-router-dom";
 import {DRAWER_WIDTH} from "../constants/Constants";
 
@@ -73,7 +74,15 @@ function MiniDrawer(props) {
             </DrawerHeader>
             <Divider />
             <List>
-                <Link to="/eventform">
+                <Link to="/event_form_json">
+                    <ListItem button key="Custom Code JSON Form">
+                        <ListItemIcon>
+                            <BuildCircleIcon />
+                        </ListItemIcon>
+                        <ListItemText primary="Custom Code JSON Form" />
+                    </ListItem>
+                </Link>
+                <Link to="/event_form">
                     <ListItem button key="Custom Code Form">
                         <ListItemIcon>
                             <DynamicFormIcon />
@@ -81,7 +90,7 @@ function MiniDrawer(props) {
                         <ListItemText primary="Custom Code Form" />
                     </ListItem>
                 </Link>
-                <Link to="/eventlist">
+                <Link to="/event_list">
                     <ListItem button key="Custom Code List">
                         <ListItemIcon>
                             <ListAltIcon />

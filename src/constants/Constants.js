@@ -20,7 +20,7 @@ export const ACTIONS = [
 ];
 
 export const ATTRIBUTES = {
-
+    "disable_edit_for_role" : []
 };
 
 

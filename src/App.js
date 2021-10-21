@@ -19,6 +19,7 @@ import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
 import {DRAWER_WIDTH} from "./constants/Constants";
+import EventFormJson from "./pages/EventFormJson";
 
 
 const AppBar = styled(MuiAppBar, {
@@ -70,7 +71,7 @@ function App() {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" noWrap component="div">
-                            J.A.R.V.I.S
+                            MI++
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -79,10 +80,13 @@ function App() {
                     <MiniDrawer open={open} handleDrawerClose={handleDrawerClose}/>
 
                     <Switch>
-                        <Route path="/eventform">
+                        <Route path="/event_form_json">
+                            <EventFormJson />
+                        </Route>
+                        <Route path="/event_form">
                             <EventForm />
                         </Route>
-                        <Route path="/eventlist">
+                        <Route path="/event_list">
                             <EventList />
                         </Route>
                         <Route path="/">
