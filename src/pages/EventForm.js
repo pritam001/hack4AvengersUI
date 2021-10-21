@@ -34,7 +34,7 @@ function EventForm() {
                 sx={{
                     display: 'flex',
                     flexGrow: 1,
-                    p: 4,
+                    p: 8,
                 }}
             >
                 <Grid container spacing={2}>
@@ -82,8 +82,6 @@ function EventForm() {
                     </Grid>
                 </Grid>
             </Box>
-
-            <Button variant="contained">SUBMIT</Button>
         </div>
     );
 }

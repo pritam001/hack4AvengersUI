@@ -18,6 +18,7 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
+import AddIcon from '@mui/icons-material/Add';
 import {DRAWER_WIDTH} from "./constants/Constants";
 import EventFormJson from "./pages/EventFormJson";
 
@@ -70,8 +71,10 @@ function App() {
                         >
                             <MenuIcon />
                         </IconButton>
-                        <Typography variant="h6" noWrap component="div">
-                            MI++
+                        <Typography variant="h6" noWrap component="div" style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', fontWeight: 'bold'}}>
+                            <div>MI</div>
+                            <AddIcon style={{marginTop: 'auto', marginBottom: 'auto', paddingLeft: '2px', paddingBottom: '2px'}} fontSize='small'/>
+                            <AddIcon style={{marginTop: 'auto', marginBottom: 'auto', paddingBottom: '2px', paddingRight: '2px'}} fontSize='small'/>
                         </Typography>
                     </Toolbar>
                 </AppBar>
