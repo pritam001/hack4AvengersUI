@@ -8,7 +8,7 @@ import {CONFIG_API_ENDPOINT} from "../constants/Constants";
 import SnackBarComponent from "../components/SnackBarComponent";
 import Grid from "@mui/material/Grid";
 
-const initJsObject = {
+export const initJsObject = {
     "client": "hdfcassets",
     "events": [
         {
@@ -17,29 +17,10 @@ const initJsObject = {
                 {
                     "action": "disable_edit_on_user_role_and_first_update_type",
                     "condition": {
-                        "userRoles": [
-                            "SU", "USER" , "ADMIN","ALL"
-                        ],
+                        "userRoles": ["ADMIN"],
+                        "userCode" : ["SU","ALL"],
                         "firstUpdateType": [
-                            "prospects_new",
-                            "offers_new"
-                        ]
-                    }
-                },
-                {
-                    "action": "disable_edit_on_user_role",
-                    "condition": {
-                        "userRoles": [
-                            "SU", "USER" , "ADMIN","ALL"
-                        ]
-                    }
-                },
-                {
-                    "action": "disable_edit_on_first_update_type",
-                    "condition": {
-                        "firstUpdateType": [
-                            "prospects_new",
-                            "offers_new"
+                            "leads_new"
                         ]
                     }
                 }
@@ -59,9 +40,25 @@ const initJsObject = {
                     },
                     "condition": {
                         "lastUpdateType": [
-                            "prospects_new",
-                            "offers_new"
+                            "leads_new"
                         ]
+                    }
+                }
+            ]
+        },
+        {
+            "event": "LEAD_UPDATED",
+            "actions": [
+                {
+                    "action": "call_slack_webhook",
+                    "attributes": {
+                        "postUrl": "https://hooks.slack.com/services/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",
+                        "postHeaders":{},
+                        "body": {
+                            "channel": "#avengers_demo",
+                            "username": "webhookbot",
+                            "icon_emoji": ":ghost:"
+                        }
                     }
                 }
             ]

@@ -18,10 +18,10 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
-import AddIcon from '@mui/icons-material/Add';
 import {DRAWER_WIDTH} from "./constants/Constants";
 import EventFormJson from "./pages/EventFormJson";
 import {grey} from "@mui/material/colors";
+import ReactForm from "./pages/ReactForm";
 
 
 const AppBar = styled(MuiAppBar, {
@@ -91,9 +91,7 @@ function App() {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" noWrap component="div" style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', fontWeight: 'bold'}}>
-                            <div>MI</div>
-                            <AddIcon style={{marginTop: 'auto', marginBottom: 'auto', paddingLeft: '2px', paddingBottom: '2px'}} fontSize='small'/>
-                            <AddIcon style={{marginTop: 'auto', marginBottom: 'auto', paddingBottom: '2px', paddingRight: '2px'}} fontSize='small'/>
+                            J.A.R.V.I.S
                         </Typography>
                     </Toolbar>
                 </AppBar>
@@ -102,6 +100,9 @@ function App() {
                 <Main open={open} sx={{ backgroundColor: grey[50] }}>
                     <DrawerHeader />
                     <Switch>
+                        <Route path="/react_form">
+                            <ReactForm />
+                        </Route>
                         <Route path="/event_form_json">
                             <EventFormJson />
                         </Route>

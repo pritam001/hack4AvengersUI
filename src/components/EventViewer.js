@@ -9,6 +9,9 @@ import {green, grey} from "@mui/material/colors";
 import Item from "../common/Item";
 import Grid from "@mui/material/Grid";
 import CableIcon from '@mui/icons-material/Cable';
+import List from "@mui/material/List";
+import {ListItem, ListItemText} from "@mui/material";
+import IconButton from "@mui/material/IconButton";
 
 function EventViewer({event, data}) {
     const {actions} = data;
@@ -38,7 +41,21 @@ function EventViewer({event, data}) {
     const actionCard = (actions) => (
         <React.Fragment>
             <CardContent>
-
+                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
+                    {/*{actions.map( action =>*/}
+                    {/*    <ListItem*/}
+                    {/*        key={action.}*/}
+                    {/*        disableGutters*/}
+                    {/*        secondaryAction={*/}
+                    {/*            <IconButton>*/}
+                    {/*                <CommentIcon />*/}
+                    {/*            </IconButton>*/}
+                    {/*        }*/}
+                    {/*    >*/}
+                    {/*        <ListItemText primary={`Line item ${value}`} />*/}
+                    {/*    </ListItem>*/}
+                    {/*)}*/}
+                </List>
             </CardContent>
         </React.Fragment>
     );
