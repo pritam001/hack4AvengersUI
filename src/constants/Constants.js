@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 export const API_ENDPOINT = "https://pod2.lms.getvymo.com/avengers";
 export const CONFIG_API_ENDPOINT = API_ENDPOINT + "/config";
 export const DRAWER_WIDTH = 240;
@@ -17,11 +19,35 @@ export const EVENTS = [
 
 export const ACTIONS = [
     {
-        code: "disable_edit_for_role",
-        name: "Disable Edit For Role",
-        attributes: []
-    }
+        code: "disable_edit_on_user_role_and_first_update_type",
+        name: "Disable Lead Edit",
+        attributes: [],
+    },
+    {
+        code: "hide_fields_last_update_type",
+        name: "Hide Input Fields",
+        attributes: [],
+    },
+    {
+        code: "call_slack_webhook",
+        name: "Call Slack Webhook",
+        attributes: [],
+    },
+    {
+        code: "call_twilio_webhook",
+        name: "Call Twilio Webhook",
+        attributes: [],
+    },
 ];
+
+export function getActionNameFromCode(action_code) {
+    const action = _.find(ACTIONS, {code: action_code});
+    if (!_.isEmpty(action)) {
+        return action.name;
+    } else {
+        return action_code;
+    }
+}
 
 export const ATTRIBUTES = {
     "disable_edit_for_role" : []

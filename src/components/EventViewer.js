@@ -9,9 +9,9 @@ import {green, grey} from "@mui/material/colors";
 import Item from "../common/Item";
 import Grid from "@mui/material/Grid";
 import CableIcon from '@mui/icons-material/Cable';
-import List from "@mui/material/List";
-import {ListItem, ListItemText} from "@mui/material";
-import IconButton from "@mui/material/IconButton";
+import AssignmentIcon from '@mui/icons-material/Assignment';
+import AddTaskIcon from '@mui/icons-material/AddTask';
+import {getActionNameFromCode} from "../constants/Constants";
 
 function EventViewer({event, data}) {
     const {actions} = data;
@@ -41,27 +41,23 @@ function EventViewer({event, data}) {
     const actionCard = (actions) => (
         <React.Fragment>
             <CardContent>
-                <List sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}>
-                    {/*{actions.map( action =>*/}
-                    {/*    <ListItem*/}
-                    {/*        key={action.}*/}
-                    {/*        disableGutters*/}
-                    {/*        secondaryAction={*/}
-                    {/*            <IconButton>*/}
-                    {/*                <CommentIcon />*/}
-                    {/*            </IconButton>*/}
-                    {/*        }*/}
-                    {/*    >*/}
-                    {/*        <ListItemText primary={`Line item ${value}`} />*/}
-                    {/*    </ListItem>*/}
-                    {/*)}*/}
-                </List>
+                <Typography sx={{ fontSize: 14, display: 'flex', flexDirection: 'row', alignItems: 'center' }} color="text.secondary" gutterBottom>
+                    <AssignmentIcon /><div style={{marginTop: 'auto', marginBottom: 'auto'}}>Actions</div>
+                </Typography>
+                {actions.map( actionData =>
+                    <Button variant="contained" size="medium" sx={{ width: '100%', mt: 1, fontWeight: 400 }}>
+                        {`${getActionNameFromCode(actionData.action)}`}
+                    </Button>
+                )}
+                <Button variant="contained" size="medium" color="secondary" sx={{ width: '100%', mt: 1, fontWeight: 400 }}>
+                    <AddTaskIcon sx={{mr: 2}}/>Add
+                </Button>
             </CardContent>
         </React.Fragment>
     );
 
     return (
-        <Box sx={{minWidth: 275}}>
+        <Box sx={{minWidth: 300}}>
             <Grid container spacing={2}>
                 <Grid item xs={4}>
                     <Item>
@@ -69,7 +65,7 @@ function EventViewer({event, data}) {
                             variant="outlined"
                             sx={{
                                 backgroundColor: actions.length > 0 ? green[100] : grey[100],
-                                minHeight: '150px',
+                                minHeight: '200px',
                             }}
                         >
                             {eventCard(event, actions)}
@@ -82,7 +78,8 @@ function EventViewer({event, data}) {
                         <Card
                             variant="outlined"
                             sx={{
-                                minHeight: '150px',
+                                backgroundColor: actions.length > 0 ? green[100] : grey[100],
+                                minHeight: '200px',
                             }}
                         >
                             {actionCard(actions)}
