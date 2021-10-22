@@ -22,9 +22,19 @@ function EventForm() {
 
     const [isDataLoading, setIsDataLoading] = React.useState(false);
 
+    const [eventAction, setEventAction] = React.useState({});
+
     const handleClientChange = (event) => {
         setSelectedClient(event.target.value);
     };
+
+    const handleEventActionSelect = ({event_code, action_code, is_action_editable}) => {
+        setEventAction({
+            event_code: event_code,
+            action_code: action_code,
+            is_action_editable: is_action_editable,
+        });
+    }
 
     useEffect(() => {
         const fetchCustomConfigData = async () => {
@@ -81,14 +91,22 @@ function EventForm() {
                     <Grid item xs={8}>
                         {EVENTS.map(event => (
                             <React.Fragment>
-                                <EventViewer event={event} data={_.find(_.get(eventListData, 'events', []), {event: event.code}) || {actions: []}}/>
+                                <EventViewer
+                                    event={event}
+                                    data={_.find(_.get(eventListData, 'events', []), {event: event.code}) || {actions: []}}
+                                    handleEventActionSelect={handleEventActionSelect}
+                                />
                                 <br/>
                             </React.Fragment>
                         ))}
                     </Grid>
 
                     <Grid item xs={4}>
-                        <EventEditor selectedClient={selectedClient} />
+                        <EventEditor
+                            selectedClient={selectedClient}
+                            selectedEvent={eventAction.event_code}
+                            selectedAction={eventAction.action_code}
+                        />
                     </Grid>
                 </Grid>
             </Grid>

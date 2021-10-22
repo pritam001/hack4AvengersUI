@@ -24,7 +24,16 @@ export const EVENTS = [
     {code: "LEAD_DETAILS_RETURN", name: "LEAD_DETAILS_RETURN"},
     {code: "LEAD_CREATED", name: "LEAD_CREATED"},
     {code: "LEAD_UPDATED", name: "LEAD_UPDATED"},
-]
+];
+
+export function getEventNameFromCode(event_code) {
+    const event = _.find(EVENTS, {code: event_code});
+    if(!_.isEmpty(event)) {
+        return event.name;
+    } else {
+        return event_code;
+    }
+}
 
 export const ACTIONS = [
     {

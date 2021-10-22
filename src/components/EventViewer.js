@@ -12,11 +12,8 @@ import AssignmentIcon from '@mui/icons-material/Assignment';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import {getActionNameFromCode} from "../constants/Constants";
 
-function EventViewer({event, data}) {
+function EventViewer({event, data, handleEventActionSelect}) {
     const {actions} = data;
-    const [selectedEvent, setSelectedEvent] = React.useState();
-    const [selectedAction, setSelectedAction] = React.useState();
-    const [isActionEditable, setIsActionEditable] = React.useState();
 
     const eventCard = (event, actions) => (
         <React.Fragment>
@@ -38,9 +35,11 @@ function EventViewer({event, data}) {
     );
 
     const openActionModifier = ({event_code, action_code, is_action_editable}) => {
-        setSelectedEvent(event_code);
-        setSelectedAction(action_code);
-        setIsActionEditable(is_action_editable);
+        handleEventActionSelect({
+            event_code: event_code,
+            action_code: action_code,
+            is_action_editable: is_action_editable,
+        });
     };
 
     const actionCard = (event, actions) => (
