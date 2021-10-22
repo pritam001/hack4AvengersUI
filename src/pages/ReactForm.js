@@ -71,32 +71,31 @@ function EventForm() {
                     <fieldset {...register("actions", {})}>
                         <legend>Actions</legend>
                         {["disable_edit_on_user_role_and_first_update_type", "hide_fields_last_update_type", "call_slack_webhook"].map((action) => (
-                            <div>
-                                <input type="checkbox" id={action} name={action} value={action} />
-                                <label htmlFor={action}>{action}</label>
-                            </div>
+                            <React.Fragment>
+                                <div>
+                                    <input type="checkbox" id={action} name={action} value={action} />
+                                    <label htmlFor={action}>{action}</label>
+                                </div>
+                                <br/>
+                                <TextareaAutosize
+                                    aria-label="Condition"
+                                    minRows={5}
+                                    placeholder="Condition"
+                                    style={{ width: '47%' }}
+                                    {...register("conditions", {})}
+                                />
+                                <TextareaAutosize
+                                    aria-label="attributes"
+                                    minRows={5}
+                                    placeholder="Attributes"
+                                    style={{ width: '47%', float: 'right' }}
+                                    {...register("conditions", {})}
+                                />
+                                <hr/>
+                            </React.Fragment>
                         ))}
                     </fieldset>
-                    <br/>
-                    <label htmlFor="conditions">Conditions:</label>
-                    <br/>
-                    <TextareaAutosize
-                        aria-label="Condition"
-                        minRows={10}
-                        placeholder="Condition"
-                        style={{ width: '100%' }}
-                        {...register("conditions", {})}
-                    />
-                    <br/>
-                    <label htmlFor="attributes">Attributes:</label>
-                    <br/>
-                    <TextareaAutosize
-                        aria-label="attributes"
-                        minRows={10}
-                        placeholder="Attributes"
-                        style={{ width: '100%' }}
-                        {...register("conditions", {})}
-                    />
+
                     <br/><br/>
                     <Button
                         variant="contained"
