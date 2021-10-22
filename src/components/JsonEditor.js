@@ -5,11 +5,7 @@ import React, {useEffect} from "react";
 const JsonEditor = props => {
     const [placeholder, setPlaceholder] = React.useState(props.editorData?.jsObject);
     const onTextChange = (editorObj) => {
-        if (!editorObj.error) {
-            props.setEditorData(editorObj);
-        } else {
-            console.log('JSONEditor error');
-        }
+        props.setEditorData(editorObj);
     };
     
     useEffect(() => {

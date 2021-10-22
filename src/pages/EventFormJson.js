@@ -112,7 +112,14 @@ function EventFormJson() {
                     />
                 </Grid>
             </Grid>
-            <Button variant="contained" color="secondary" onClick={() => submitCustomEventData(editorData)}>SUBMIT</Button>
+            <Button
+                variant="contained"
+                color="secondary"
+                disabled={!!editorData.error}
+                onClick={() => submitCustomEventData(editorData)}
+            >
+                SUBMIT
+            </Button>
         </Box>
     );
 }
