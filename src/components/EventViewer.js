@@ -25,7 +25,7 @@ function EventViewer({event, data}) {
                 <Typography variant="h5" component="div">
                     {event.name}
                 </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                <Typography sx={{ mb: 0 }} color="text.secondary">
                     Added actions: {actions.length}
                 </Typography>
                 <Typography variant="body2">

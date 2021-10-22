@@ -33,15 +33,32 @@ export const initJsObject = {
                     "action": "hide_fields_last_update_type",
                     "attributes": {
                         "fieldsToRemove": [
-                            "leadid",
-                            "processingentit_ywmuio686o",
+                            "lastname_yrtwn3kggk",
+                            "companyname_zwv8nluicl",
                             "branchcity_g93ts42ftg"
                         ]
                     },
                     "condition": {
-                        "lastUpdateType": [
-                            "leads_new"
-                        ]
+                        "userRoles": ["ADMIN"],
+                        "userCode" : ["SU","ALL"],
+                        "firstUpdateType": "leads_new"
+                    }
+                }
+            ]
+        },
+        {
+            "event": "LEAD_CREATED",
+            "actions": [
+                {
+                    "action": "call_slack_webhook",
+                    "attributes": {
+                        "postUrl": "https://hooks.slack.com/services/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",
+                        "postHeaders":{},
+                        "body": {
+                            "channel": "#avengers_demo",
+                            "username": "webhookbot",
+                            "icon_emoji": ":ghost:"
+                        }
                     }
                 }
             ]
