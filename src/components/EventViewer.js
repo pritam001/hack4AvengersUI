@@ -1,7 +1,6 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
@@ -15,6 +14,9 @@ import {getActionNameFromCode} from "../constants/Constants";
 
 function EventViewer({event, data}) {
     const {actions} = data;
+    const [selectedEvent, setSelectedEvent] = React.useState();
+    const [selectedAction, setSelectedAction] = React.useState();
+    const [isActionEditable, setIsActionEditable] = React.useState();
 
     const eventCard = (event, actions) => (
         <React.Fragment>
@@ -32,24 +34,50 @@ function EventViewer({event, data}) {
                     {event.description}
                 </Typography>
             </CardContent>
-            {/*<CardActions>*/}
-            {/*    <Button variant="contained" color="primary" size="small">Show actions</Button>*/}
-            {/*</CardActions>*/}
         </React.Fragment>
     );
 
-    const actionCard = (actions) => (
+    const openActionModifier = ({event_code, action_code, is_action_editable}) => {
+        setSelectedEvent(event_code);
+        setSelectedAction(action_code);
+        setIsActionEditable(is_action_editable);
+    };
+
+    const actionCard = (event, actions) => (
         <React.Fragment>
             <CardContent>
                 <Typography sx={{ fontSize: 14, display: 'flex', flexDirection: 'row', alignItems: 'center' }} color="text.secondary" gutterBottom>
                     <AssignmentIcon /><div style={{marginTop: 'auto', marginBottom: 'auto'}}>Actions</div>
                 </Typography>
                 {actions.map( actionData =>
-                    <Button variant="contained" size="medium" sx={{ width: '100%', mt: 1, fontWeight: 400 }}>
+                    <Button
+                        variant="contained"
+                        size="medium"
+                        sx={{ width: '100%', mt: 1, fontWeight: 400 }}
+                        onClick={() =>
+                            openActionModifier({
+                                event_code: event.code,
+                                action_code: actionData.code,
+                                is_action_editable: false,
+                            })
+                        }
+                    >
                         {`${getActionNameFromCode(actionData.action)}`}
                     </Button>
                 )}
-                <Button variant="contained" size="medium" color="secondary" sx={{ width: '100%', mt: 1, fontWeight: 400 }}>
+                <Button
+                    variant="contained"
+                    size="medium"
+                    color="secondary"
+                    sx={{ width: '100%', mt: 1, fontWeight: 400 }}
+                    onClick={() =>
+                        openActionModifier({
+                            event_code: event.code,
+                            action_code: '',
+                            is_action_editable: true,
+                       })
+                    }
+                >
                     <AddTaskIcon sx={{mr: 2}}/>Add
                 </Button>
             </CardContent>
@@ -82,7 +110,7 @@ function EventViewer({event, data}) {
                                 minHeight: '200px',
                             }}
                         >
-                            {actionCard(actions)}
+                            {actionCard(event, actions)}
                         </Card>
                     </Item>
                 </Grid>
