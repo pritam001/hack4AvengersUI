@@ -87,7 +87,7 @@ function EventViewer({event, data}) {
     return (
         <Box sx={{minWidth: 300}}>
             <Grid container spacing={2}>
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                     <Item>
                         <Card
                             variant="outlined"
@@ -101,7 +101,7 @@ function EventViewer({event, data}) {
                     </Item>
                 </Grid>
 
-                <Grid item xs={4}>
+                <Grid item xs={6}>
                     <Item>
                         <Card
                             variant="outlined"

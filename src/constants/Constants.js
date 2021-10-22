@@ -10,6 +10,15 @@ export const CLIENTS = [
     {code: "hdfcassets", name: "HDFC Assets"},
 ];
 
+export function getClientNameFromCode(client_code) {
+    const client = _.find(CLIENTS, {code: client_code});
+    if(!_.isEmpty(client)) {
+        return client.name;
+    } else {
+        return client_code;
+    }
+}
+
 export const EVENTS = [
     {code: "INPUT_FIELDS_RETURN", name: "INPUT_FIELDS_RETURN"},
     {code: "LEAD_DETAILS_RETURN", name: "LEAD_DETAILS_RETURN"},

@@ -10,6 +10,7 @@ import Item from "../common/Item";
 import EventViewer from "../components/EventViewer";
 import {useEffect} from "react";
 import SnackBarComponent from "../components/SnackBarComponent";
+import EventEditor from "../components/EventEditor";
 
 function EventForm() {
     const [selectedClient, setSelectedClient] = React.useState('hdfcassets');
@@ -55,32 +56,40 @@ function EventForm() {
     return (
         <Box sx={{ display: 'flex', flexGrow: 1, flexDirection: 'column', p: 8 }} className="EventForm">
             <Grid container spacing={2}>
-                <Grid item xs={4}>
-                    <Item>
-                        <FormControl fullWidth>
-                            <InputLabel id="client-select-label">Client</InputLabel>
-                            <Select
-                                labelId="client-select-label"
-                                id="client-select"
-                                value={selectedClient}
-                                label="Client"
-                                onChange={handleClientChange}
-                            >
-                                {CLIENTS.map(client => (
-                                    <MenuItem key={client.code} value={client.code}>{client.name}</MenuItem>
-                                ))}
-                            </Select>
-                        </FormControl>
-                    </Item>
-                    <br />
+                <Grid container spacing={2}>
+                    <Grid item xs={4}>
+                        <Item>
+                            <FormControl fullWidth>
+                                <InputLabel id="client-select-label">Client</InputLabel>
+                                <Select
+                                    labelId="client-select-label"
+                                    id="client-select"
+                                    value={selectedClient}
+                                    label="Client"
+                                    onChange={handleClientChange}
+                                >
+                                    {CLIENTS.map(client => (
+                                        <MenuItem key={client.code} value={client.code}>{client.name}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                        </Item>
+                        <br />
+                    </Grid>
                 </Grid>
-                <Grid item xs={12}>
-                    {EVENTS.map(event => (
-                        <React.Fragment>
-                            <EventViewer event={event} data={_.find(_.get(eventListData, 'events', []), {event: event.code}) || {actions: []}}/>
-                            <br/>
-                        </React.Fragment>
-                    ))}
+                <Grid container spacing={2}>
+                    <Grid item xs={8}>
+                        {EVENTS.map(event => (
+                            <React.Fragment>
+                                <EventViewer event={event} data={_.find(_.get(eventListData, 'events', []), {event: event.code}) || {actions: []}}/>
+                                <br/>
+                            </React.Fragment>
+                        ))}
+                    </Grid>
+
+                    <Grid item xs={4}>
+                        <EventEditor selectedClient={selectedClient} />
+                    </Grid>
                 </Grid>
             </Grid>
 
