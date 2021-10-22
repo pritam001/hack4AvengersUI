@@ -9,7 +9,9 @@ export const CLIENTS = [
 ];
 
 export const EVENTS = [
+    {code: "INPUT_FIELDS_RETURN", name: "INPUT_FIELDS_RETURN"},
     {code: "LEAD_DETAILS_RETURN", name: "LEAD_DETAILS_RETURN"},
+    {code: "LEAD_CREATED", name: "LEAD_CREATED"},
     {code: "LEAD_UPDATED", name: "LEAD_UPDATED"},
 ]
 

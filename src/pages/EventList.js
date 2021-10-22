@@ -14,7 +14,7 @@ import SnackBarComponent from "../components/SnackBarComponent";
 
 function EventList() {
     const [eventListData, setEventListData] = React.useState({});
-    const [selectedClient, setSelectedClient] = React.useState('');
+    const [selectedClient, setSelectedClient] = React.useState('hdfcassets');
 
     const [snackbarStatus, setSnackbarStatus] = React.useState("success");
     const [snackbarMessage, setSnackbarMessage] = React.useState("");

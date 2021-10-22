@@ -21,6 +21,7 @@ import Typography from "@mui/material/Typography";
 import AddIcon from '@mui/icons-material/Add';
 import {DRAWER_WIDTH} from "./constants/Constants";
 import EventFormJson from "./pages/EventFormJson";
+import {grey} from "@mui/material/colors";
 
 
 const AppBar = styled(MuiAppBar, {
@@ -98,7 +99,7 @@ function App() {
                 </AppBar>
 
                 <MiniDrawer open={open} handleDrawerClose={handleDrawerClose}/>
-                <Main open={open}>
+                <Main open={open} sx={{ backgroundColor: grey[50] }}>
                     <DrawerHeader />
                     <Switch>
                         <Route path="/event_form_json">

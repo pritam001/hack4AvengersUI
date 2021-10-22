@@ -9,7 +9,7 @@ import SnackBarComponent from "../components/SnackBarComponent";
 import Grid from "@mui/material/Grid";
 
 const initJsObject = {
-    "client": "hdfc",
+    "client": "hdfcassets",
     "events": [
         {
             "event": "LEAD_DETAILS_RETURN",
