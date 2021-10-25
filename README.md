@@ -91,6 +91,3 @@ mysql> select distinct(role) from userVsRoles where clientId="absli"
 | AdminRole       |
 | Goals Admin     |
 +-----------------+
-
-https://bitbucket.org/vymo/vymo-config-data/src/uat/v1/clients/absli/modules/leads/states/
-https://bitbucket.org/vymo/vymo-config-data/src/uat/v1/clients/absli/modules/
