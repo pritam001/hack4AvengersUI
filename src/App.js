@@ -9,7 +9,7 @@ import {
 import EventForm from "./pages/EventForm";
 import EventList from "./pages/EventList";
 import Login from "./pages/Login";
-import MiniDrawer from "./components/NavBar";
+import MiniDrawer, {DrawerHeader} from "./components/NavBar";
 import {styled} from "@mui/material/styles";
 import MuiAppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
@@ -18,9 +18,10 @@ import Toolbar from "@mui/material/Toolbar";
 import IconButton from "@mui/material/IconButton";
 import MenuIcon from "@mui/icons-material/Menu";
 import Typography from "@mui/material/Typography";
-import AddIcon from '@mui/icons-material/Add';
 import {DRAWER_WIDTH} from "./constants/Constants";
 import EventFormJson from "./pages/EventFormJson";
+import {grey} from "@mui/material/colors";
+import ReactForm from "./pages/ReactForm";
 
 
 const AppBar = styled(MuiAppBar, {
@@ -40,6 +41,24 @@ const AppBar = styled(MuiAppBar, {
         }),
     }),
 }));
+
+const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
+    ({ theme, open }) => ({
+        flexGrow: 1,
+        transition: theme.transitions.create('margin', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        // marginLeft: `${DRAWER_WIDTH}px`,
+        ...(open && {
+            transition: theme.transitions.create('margin', {
+                easing: theme.transitions.easing.easeOut,
+                duration: theme.transitions.duration.enteringScreen,
+            }),
+            marginLeft: 0,
+        }),
+    }),
+);
 
 function App() {
     const [open, setOpen] = React.useState(false);
@@ -72,17 +91,18 @@ function App() {
                             <MenuIcon />
                         </IconButton>
                         <Typography variant="h6" noWrap component="div" style={{display: 'flex', flexDirection: 'row', justifyContent: 'center', fontWeight: 'bold'}}>
-                            <div>MI</div>
-                            <AddIcon style={{marginTop: 'auto', marginBottom: 'auto', paddingLeft: '2px', paddingBottom: '2px'}} fontSize='small'/>
-                            <AddIcon style={{marginTop: 'auto', marginBottom: 'auto', paddingBottom: '2px', paddingRight: '2px'}} fontSize='small'/>
+                            J.A.R.V.I.S
                         </Typography>
                     </Toolbar>
                 </AppBar>
 
-                <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
-                    <MiniDrawer open={open} handleDrawerClose={handleDrawerClose}/>
-
+                <MiniDrawer open={open} handleDrawerClose={handleDrawerClose}/>
+                <Main open={open} sx={{ backgroundColor: grey[50] }}>
+                    <DrawerHeader />
                     <Switch>
+                        <Route path="/react_form">
+                            <ReactForm />
+                        </Route>
                         <Route path="/event_form_json">
                             <EventFormJson />
                         </Route>
@@ -96,7 +116,7 @@ function App() {
                             <Login />
                         </Route>
                     </Switch>
-                </Box>
+                </Main>
             </Box>
         </Router>
     );

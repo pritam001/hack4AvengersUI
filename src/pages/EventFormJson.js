@@ -4,14 +4,12 @@ import * as React from "react";
 import JsonEditor from "../components/JsonEditor";
 import Box from "@mui/material/Box";
 import {Button} from "@mui/material";
-import {POST_CONFIG_API_ENDPOINT} from "../constants/Constants";
+import {CONFIG_API_ENDPOINT} from "../constants/Constants";
 import SnackBarComponent from "../components/SnackBarComponent";
-import {styled} from "@mui/material/styles";
-import Paper from "@mui/material/Paper";
 import Grid from "@mui/material/Grid";
 
-const initJsObject = {
-    "client": "hdfc",
+export const initJsObject = {
+    "client": "hdfcassets",
     "events": [
         {
             "event": "LEAD_DETAILS_RETURN",
@@ -19,29 +17,10 @@ const initJsObject = {
                 {
                     "action": "disable_edit_on_user_role_and_first_update_type",
                     "condition": {
-                        "userRoles": [
-                            "SU", "USER" , "ADMIN","ALL"
-                        ],
+                        "userRoles": ["ADMIN"],
+                        "userCode" : ["SU","ALL"],
                         "firstUpdateType": [
-                            "prospects_new",
-                            "offers_new"
-                        ]
-                    }
-                },
-                {
-                    "action": "disable_edit_on_user_role",
-                    "condition": {
-                        "userRoles": [
-                            "SU", "USER" , "ADMIN","ALL"
-                        ]
-                    }
-                },
-                {
-                    "action": "disable_edit_on_first_update_type",
-                    "condition": {
-                        "firstUpdateType": [
-                            "prospects_new",
-                            "offers_new"
+                            "leads_new"
                         ]
                     }
                 }
@@ -54,16 +33,49 @@ const initJsObject = {
                     "action": "hide_fields_last_update_type",
                     "attributes": {
                         "fieldsToRemove": [
-                            "leadid",
-                            "processingentit_ywmuio686o",
+                            "lastname_yrtwn3kggk",
+                            "companyname_zwv8nluicl",
                             "branchcity_g93ts42ftg"
                         ]
                     },
                     "condition": {
-                        "lastUpdateType": [
-                            "prospects_new",
-                            "offers_new"
-                        ]
+                        "userRoles": ["ADMIN"],
+                        "userCode" : ["SU","ALL"],
+                        "firstUpdateType": "leads_new"
+                    }
+                }
+            ]
+        },
+        {
+            "event": "LEAD_CREATED",
+            "actions": [
+                {
+                    "action": "call_slack_webhook",
+                    "attributes": {
+                        "postUrl": "https://hooks.slack.com/services/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",
+                        "postHeaders":{},
+                        "body": {
+                            "channel": "#avengers_demo",
+                            "username": "webhookbot",
+                            "icon_emoji": ":ghost:"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "event": "LEAD_UPDATED",
+            "actions": [
+                {
+                    "action": "call_slack_webhook",
+                    "attributes": {
+                        "postUrl": "https://hooks.slack.com/services/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",
+                        "postHeaders":{},
+                        "body": {
+                            "channel": "#avengers_demo",
+                            "username": "webhookbot",
+                            "icon_emoji": ":ghost:"
+                        }
                     }
                 }
             ]
@@ -78,7 +90,7 @@ function EventFormJson() {
     const [isSnackbarOpen, setIsSnackbarOpen] = React.useState(false);
 
     const submitCustomEventData = (editorData) => {
-        return fetch(POST_CONFIG_API_ENDPOINT, {
+        return fetch(CONFIG_API_ENDPOINT, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -107,10 +119,21 @@ function EventFormJson() {
             />
             <Grid container spacing={2} sx={{ pb: 4 }}>
                 <Grid item xs={6}>
-                    <JsonEditor editorData={editorData} setEditorData={setEditorData} />
+                    <JsonEditor
+                        editorData={editorData}
+                        setEditorData={setEditorData}
+                        viewOnly={false}
+                    />
                 </Grid>
             </Grid>
-            <Button variant="contained" onClick={() => submitCustomEventData(editorData)}>SUBMIT</Button>
+            <Button
+                variant="contained"
+                color="secondary"
+                disabled={!!editorData.error}
+                onClick={() => submitCustomEventData(editorData)}
+            >
+                SUBMIT
+            </Button>
         </Box>
     );
 }

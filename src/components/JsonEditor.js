@@ -5,11 +5,7 @@ import React, {useEffect} from "react";
 const JsonEditor = props => {
     const [placeholder, setPlaceholder] = React.useState(props.editorData?.jsObject);
     const onTextChange = (editorObj) => {
-        if (!editorObj.error) {
-            props.setEditorData(editorObj);
-        } else {
-            console.log('JSONEditor error');
-        }
+        props.setEditorData(editorObj);
     };
     
     useEffect(() => {
@@ -20,6 +16,7 @@ const JsonEditor = props => {
         <JSONInput
             placeholder={placeholder} // data to display
             theme="darktheme"
+            viewOnly={props.viewOnly}
             locale={locale}
             colors={{
                 string: "#DAA520" // overrides theme colors with whatever color value you want
